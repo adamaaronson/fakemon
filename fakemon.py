@@ -21,8 +21,8 @@ class Fakemon:
     
     def __str__(self):
         type_str = f'{self.type1}/{self.type2}' if self.type2 else self.type1
-        # stats_str = '\n- '.join([f'{stat}: {self.stats[stat]}' for stat in STATS])
-        stats_str = ', '.join([f'{self.stats[stat]} {stat}' for stat in STATS]) + f' ({sum(self.stats.values())} total)'
+        stats_str = '\n- '.join([f'{stat}: {self.stats[stat]}' for stat in STATS])
+        # stats_str = ', '.join([f'{self.stats[stat]} {stat}' for stat in STATS]) + f' ({sum(self.stats.values())} total)'
         return_str = f'A wild {self.name} appeared!\n- Type: {type_str}\n- Ability: {self.ability}\n- {stats_str}'
         return return_str
 
