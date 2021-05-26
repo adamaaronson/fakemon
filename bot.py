@@ -1,5 +1,4 @@
 import tweepy
-import time
 from os import environ
 from fakemon import generate_fakemon
 
@@ -14,4 +13,5 @@ api = tweepy.API(auth)
 
 fakemon = generate_fakemon()
 api.update_status(str(fakemon))
+
 print('Successfully tweeted!')
