@@ -12,8 +12,8 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-# interval = 60 * 60 * 12
-interval = 30 # just for testing!!!
+interval = 60 * 60 * 2
+# interval = 30 # just for testing!!!
 
 while True:
     fakemon = generate_fakemon()
