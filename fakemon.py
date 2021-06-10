@@ -7,13 +7,14 @@ MAX_LEN = 12
 POKEDEX = open('txt/pokemon.txt').read().splitlines()
 TYPES = open('txt/types.txt').read().splitlines()
 ABILITIES = open('txt/abilities.txt').read().splitlines()
-STATS = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']
+STATS = ['HP', 'Atk', 'Def', 'Sp. Atk', 'Sp. Def', 'Speed']
 
 filter = Wordfilter()
 
 class Fakemon:
     def __init__(self, name=''):
         self.name = name
+        self.id = 0
         self.type1 = None
         self.type2 = None
         self.ability = None
@@ -22,12 +23,20 @@ class Fakemon:
     def __str__(self):
         type_str = f'{self.type1}/{self.type2}' if self.type2 else self.type1
         stats_str = '\n- '.join([f'{stat}: {self.stats[stat]}' for stat in STATS])
-        # stats_str = ', '.join([f'{self.stats[stat]} {stat}' for stat in STATS]) + f' ({sum(self.stats.values())} total)'
-        return_str = f'A wild {self.name} appeared!\n- Type: {type_str}\n- Ability: {self.ability}\n- {stats_str}'
+        bst_str = f'{sum(self.stats.values())}'
+        dexno_str = f'#{str.zfill(self.id, 3)}:'
+        return_str = f'A wild {self.name} appeared!\nType: {type_str}\nAbility: {self.ability}\n- {stats_str}\nBase Stat Total: {bst_str}'
         return return_str
 
 def generate_fakemon():
+    pokedexno = open('pokedexno.txt', 'r+')
+    dexno = pokedexno.readlines()[0]
+    pokedexno.seek(0)
+    pokedexno.writelines([str(int(dexno) + 1)])
+    pokedexno.close()
+
     fakemon = Fakemon()
+    fakemon.id = dexno
 
     # generate name, assuring it contains no bad words
     while True:
@@ -46,6 +55,6 @@ def generate_fakemon():
     fakemon.ability = random.choice(ABILITIES)
 
     # generate stats
-    fakemon.stats = {stat : random.choice([random.randrange(50, 101), random.randrange(40, 161)]) for stat in STATS}
+    fakemon.stats = {stat : random.choice([random.randrange(50, 101), random.randrange(25, 161)]) for stat in STATS}
 
     return fakemon
