@@ -7,14 +7,13 @@ MAX_LEN = 12
 POKEDEX = open('txt/pokemon.txt').read().splitlines()
 TYPES = open('txt/types.txt').read().splitlines()
 ABILITIES = open('txt/abilities.txt').read().splitlines()
-STATS = ['HP', 'Atk', 'Def', 'Sp. Atk', 'Sp. Def', 'Speed']
+STATS = ['HP', 'Attack', 'Defense', 'Sp. Atk', 'Sp. Def', 'Speed']
 
 filter = Wordfilter()
 
 class Fakemon:
     def __init__(self, name=''):
         self.name = name
-        self.id = 0
         self.type1 = None
         self.type2 = None
         self.ability = None
@@ -24,19 +23,12 @@ class Fakemon:
         type_str = f'{self.type1}/{self.type2}' if self.type2 else self.type1
         stats_str = '\n- '.join([f'{stat}: {self.stats[stat]}' for stat in STATS])
         bst_str = f'{sum(self.stats.values())}'
-        dexno_str = f'#{str.zfill(self.id, 3)}:'
         return_str = f'A wild {self.name} appeared!\nType: {type_str}\nAbility: {self.ability}\n- {stats_str}\nBase Stat Total: {bst_str}'
         return return_str
 
 def generate_fakemon():
-    pokedexno = open('pokedexno.txt', 'r+')
-    dexno = pokedexno.readlines()[0]
-    pokedexno.seek(0)
-    pokedexno.writelines([str(int(dexno) + 1)])
-    pokedexno.close()
 
     fakemon = Fakemon()
-    fakemon.id = dexno
 
     # generate name, assuring it contains no bad words
     while True:
