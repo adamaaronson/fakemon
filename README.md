@@ -1,6 +1,6 @@
-# fakemon
+# Who's That Fakemon?
 
-**[Who's That Fakemon?](https://twitter.com/whosthatfakemon)** is a Twitter bot that tweets randomly generated fake Pokémon, or Fakemon. The Fakemon are completely random in every way, even down to the letters in their names.
+[Who's That Fakemon?](https://twitter.com/whosthatfakemon) is a Twitter bot that tweets randomly generated fake Pokémon, or Fakemon. The Fakemon are completely random in every way, even down to the letters in their names.
 
 Created by Adam Aaronson for fun in 2021, this bot is not affiliated with the Pokémon Company, Game Freak, or Nintendo.
 
